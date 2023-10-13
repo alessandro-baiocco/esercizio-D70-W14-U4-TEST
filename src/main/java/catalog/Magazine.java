@@ -84,7 +84,7 @@ public class Magazine extends Material {
                 " titolo='" + titolo +
                 " annoDiPubblicazione=" + annoDiPubblicazione +
                 " numeroPagine=" + numeroPagine +
-                '}' + "\n";
+                "\n";
     }
 
     @Override

@@ -3,7 +3,6 @@ package coso;
 import catalog.Book;
 import catalog.Magazine;
 import catalog.Material;
-import com.github.javafaker.Faker;
 import enums.Periodo;
 import org.apache.commons.io.FileUtils;
 
@@ -13,12 +12,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Supplier;
 
+import static other.Tools.*;
+
 public class Application {
-    static List<Material> catalogo = new ArrayList<>();
-    static Periodo[] rndPerdiodo = Periodo.values();
-    static Faker faker = new Faker();
-    static Random rnd = new Random();
-    static Scanner input = new Scanner(System.in);
+//    static List<Material> catalogo = new ArrayList<>();
+//    static Periodo[] rndPerdiodo = Periodo.values();
+//    static Faker faker = new Faker();
+//    static Random rnd = new Random();
+//    static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -147,11 +148,10 @@ public class Application {
 
     public static void ricerca() {
         try {
-
-            System.out.println("come vuoi ricercare ? isbm , anno o autore ");
+            System.out.println("come vuoi ricercare ? isbn , anno o autore ");
             String researchFromUser = input.nextLine().toLowerCase().trim();
             switch (researchFromUser) {
-                case "isbm": {
+                case "isbn": {
                     System.out.println("inserire isbm da ricercare ");
                     int researchInputInt = Integer.parseInt(input.nextLine());
                     catalogo.stream().filter(Material -> Material.getISBN() == researchInputInt).forEach(System.out::println);
@@ -199,6 +199,7 @@ public class Application {
                     } catch (IOException e) {
                         System.err.println(e.getMessage());
                     }
+                    System.out.println("salvataggio avvenuto con successo");
                     break;
                 }
                 case "carica": {
@@ -208,15 +209,18 @@ public class Application {
                     List<String> splitItemsString = Arrays.asList(fileString.split("#"));
                     List<Material> newList = new ArrayList<>();
                     List<String> itemInfos = new ArrayList<>(splitItemsString);
+                    catalogo.clear();
 
                     for (String itemInfo : itemInfos) {
                         String[] splittedItem = itemInfo.split("@");
+
                         if (splittedItem.length == 6)
-                            newList.add(new Book(splittedItem[0], splittedItem[1], splittedItem[2], Integer.parseInt(splittedItem[3]), Integer.parseInt(splittedItem[4]), Integer.parseInt(splittedItem[5])));
+                            catalogo.add(new Book(splittedItem[0], splittedItem[1], splittedItem[2], Integer.parseInt(splittedItem[3]), Integer.parseInt(splittedItem[4]), Integer.parseInt(splittedItem[5])));
                         else
-                            newList.add(new Magazine(splittedItem[0], Integer.parseInt(splittedItem[1]), Integer.parseInt(splittedItem[2]), Periodo.valueOf(splittedItem[3]), Integer.parseInt(splittedItem[4])));
+                            catalogo.add(new Magazine(splittedItem[0], Integer.parseInt(splittedItem[1]), Integer.parseInt(splittedItem[2]), Periodo.valueOf(splittedItem[3]), Integer.parseInt(splittedItem[4])));
                     }
-                    System.out.println(newList);
+                    System.out.println("caricatmento eseguito con successo");
+                    System.out.println(catalogo);
                     break;
                 }
                 default: {
@@ -225,7 +229,8 @@ public class Application {
             }
         } catch (IOException ex) {
             System.err.println("errore in I/O");
-
+        } catch (Exception ex) {
+            System.err.println("errore generico");
         }
 
     }
