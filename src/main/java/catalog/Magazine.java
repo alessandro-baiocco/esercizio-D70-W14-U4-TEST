@@ -24,6 +24,14 @@ public class Magazine extends Material {
         this.periodo = periodo;
     }
 
+    public Magazine(String titolo, int annoDiPubblicazione, int numeroPagine, Periodo periodo, int ISBN) {
+        this.ISBN = ISBN;
+        this.titolo = titolo;
+        this.annoDiPubblicazione = annoDiPubblicazione;
+        this.numeroPagine = numeroPagine;
+        this.periodo = periodo;
+    }
+
 
     // getters
     public String getTitolo() {
@@ -78,4 +86,11 @@ public class Magazine extends Material {
                 " numeroPagine=" + numeroPagine +
                 '}' + "\n";
     }
+
+    @Override
+    public String save() {
+        return titolo + "@" + annoDiPubblicazione + "@" + numeroPagine + "@" + periodo + "@" + ISBN + "#";
+    }
+
+
 }

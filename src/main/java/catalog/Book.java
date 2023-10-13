@@ -24,6 +24,15 @@ public class Book extends Material {
         this.numeroPagine = numeroPagine;
     }
 
+    public Book(String autore, String genere, String titolo, int annoDiPubblicazione, int ISBN, int numeroPagine) {
+        this.autore = autore;
+        this.genere = genere;
+        this.ISBN = ISBN;
+        this.titolo = titolo;
+        this.annoDiPubblicazione = annoDiPubblicazione;
+        this.numeroPagine = numeroPagine;
+    }
+
     // getters
     public String getTitolo() {
         return titolo;
@@ -78,7 +87,7 @@ public class Book extends Material {
 
     @Override
     public String toString() {
-        return "Libro" +
+        return "Libro " +
                 "autore=" + autore +
                 ", genere=" + genere +
                 ", ISBN=" + ISBN +
@@ -86,6 +95,11 @@ public class Book extends Material {
                 ", annoDiPubblicazione=" + annoDiPubblicazione +
                 ", numeroPagine=" + numeroPagine
                 + "\n";
+    }
+
+    @Override
+    public String save() {
+        return autore + "@" + genere + "@" + titolo + "@" + annoDiPubblicazione + "@" + ISBN + "@" + numeroPagine + "#";
     }
 
 

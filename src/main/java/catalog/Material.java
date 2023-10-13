@@ -61,4 +61,9 @@ public abstract class Material {
         return ISBN == material.ISBN && annoDiPubblicazione == material.annoDiPubblicazione && numeroPagine == material.numeroPagine && Objects.equals(titolo, material.titolo);
     }
 
+
+    public String save() {
+        return "";
+    }
+
 }

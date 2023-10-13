@@ -19,7 +19,6 @@ public class Application {
     static Faker faker = new Faker();
     static Random rnd = new Random();
     static Scanner input = new Scanner(System.in);
-    static List<Book> libri = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -32,9 +31,7 @@ public class Application {
 
 
         for (int i = 0; i < 10; i++) {
-            Book libroGenerato = bookSupplier.get();
-            catalogo.add(libroGenerato);
-            libri.add(libroGenerato);
+            catalogo.add(bookSupplier.get());
         }
         for (int i = 0; i < 10; i++) {
             catalogo.add(magazineSupplier.get());
@@ -42,11 +39,13 @@ public class Application {
         System.out.println(catalogo);
 
         try {
+            esterno:
             while (true) {
                 System.out.println("1 : per aggiungere o rimuovere");
                 System.out.println("2 : per ricercare");
                 System.out.println("3 : per salvare o ricaricare");
                 System.out.println("4 : per vedere l'archivio");
+                System.out.println("5 : per uscire");
                 String userInputStr = input.nextLine();
                 switch (userInputStr) {
                     case "1": {
@@ -58,33 +57,15 @@ public class Application {
                         break;
                     }
                     case "3": {
-                        System.out.println("vuoi salvare o ricaricare ? salva o carica");
-                        String saveOreload = input.nextLine();
-                        switch (saveOreload) {
-                            case "salva": {
-                                File file = new File("src/output.txt");
-                                StringBuilder catalogoCompleto = new StringBuilder();
-                                for (int i = 0; i < catalogo.size(); i++) {
-                                    catalogoCompleto.append(catalogo.get(i).toString()).append(System.getProperty("line.separator"));
-                                }
-                                try {
-                                    FileUtils.writeStringToFile(file, catalogoCompleto + System.lineSeparator(), StandardCharsets.UTF_8);
-                                } catch (IOException e) {
-                                    System.err.println(e.getMessage());
-                                }
-                                break;
-                            }
-
-
-                            default: {
-                                System.out.println("eh ? cosa ? ");
-                            }
-                        }
+                        salvaOcarica();
                         break;
                     }
                     case "4": {
                         System.out.println(catalogo);
                         break;
+                    }
+                    case "5": {
+                        break esterno;
                     }
                     default: {
                         System.out.println("eh? cosa ?");
@@ -121,7 +102,6 @@ public class Application {
                     int pageNumber = Integer.parseInt(input.nextLine());
                     Book libroGenerato = new Book(autor, title, gener, year, pageNumber);
                     catalogo.add(libroGenerato);
-                    libri.add(libroGenerato);
                     System.out.println("aggiunta di " + title + " avvenuta con successo");
                     break;
                 }
@@ -161,7 +141,7 @@ public class Application {
         } catch (InputMismatchException | NumberFormatException ex) {
             System.err.println("input non valido");
         } catch (Exception ex) {
-            System.err.println("errore");
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -187,7 +167,7 @@ public class Application {
                     System.out.println("inserire autore da ricercare ");
                     String researchInputStr = input.nextLine().toLowerCase().trim();
                     System.out.println(researchInputStr);
-                    libri.stream().filter(Book -> Book.getAutore().equals(researchInputStr)).forEach(System.out::println);
+                    catalogo.stream().filter(Material -> Material.getClass() == Book.class && Objects.equals(((Book) Material).getAutore(), researchInputStr)).forEach(System.out::println);
                     break;
                 }
 
@@ -198,7 +178,54 @@ public class Application {
         } catch (InputMismatchException | NumberFormatException ex) {
             System.err.println("input non valido");
         } catch (Exception ex) {
-            System.err.println("errore");
+            System.err.println(ex.getMessage());
+        }
+
+    }
+
+    public static void salvaOcarica() {
+        try {
+            System.out.println("vuoi salvare o ricaricare ? salva o carica");
+            String saveOreload = input.nextLine();
+            switch (saveOreload) {
+                case "salva": {
+                    try {
+                        File file = new File("src/output.txt");
+                        String catalogoItemToStr = "";
+                        for (int i = 0; i < catalogo.size(); i++) {
+                            catalogoItemToStr += catalogo.get(i).save();
+                        }
+                        FileUtils.writeStringToFile(file, catalogoItemToStr, StandardCharsets.UTF_8);
+                    } catch (IOException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    break;
+                }
+                case "carica": {
+                    File file = new File("src/output.txt");
+                    String fileString = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+
+                    List<String> splitItemsString = Arrays.asList(fileString.split("#"));
+                    List<Material> newList = new ArrayList<>();
+                    List<String> itemInfos = new ArrayList<>(splitItemsString);
+
+                    for (String itemInfo : itemInfos) {
+                        String[] splittedItem = itemInfo.split("@");
+                        if (splittedItem.length == 6)
+                            newList.add(new Book(splittedItem[0], splittedItem[1], splittedItem[2], Integer.parseInt(splittedItem[3]), Integer.parseInt(splittedItem[4]), Integer.parseInt(splittedItem[5])));
+                        else
+                            newList.add(new Magazine(splittedItem[0], Integer.parseInt(splittedItem[1]), Integer.parseInt(splittedItem[2]), Periodo.valueOf(splittedItem[3]), Integer.parseInt(splittedItem[4])));
+                    }
+                    System.out.println(newList);
+                    break;
+                }
+                default: {
+                    System.out.println("eh ? cosa ? ");
+                }
+            }
+        } catch (IOException ex) {
+            System.err.println("errore in I/O");
+
         }
 
     }
