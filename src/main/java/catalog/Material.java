@@ -39,4 +39,15 @@ public abstract class Material {
     public void setNumeroPagine(int numeroPagine) {
         this.numeroPagine = numeroPagine;
     }
+
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "ISBN=" + ISBN +
+                ", titolo='" + titolo + '\'' +
+                ", annoDiPubblicazione=" + annoDiPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}';
+    }
 }

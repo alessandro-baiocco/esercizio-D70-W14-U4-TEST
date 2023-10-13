@@ -4,6 +4,7 @@ import enums.Periodo;
 
 import java.util.Random;
 
+
 public class Magazine extends Material {
 
     Random rnd = new Random();
@@ -15,13 +16,14 @@ public class Magazine extends Material {
 
 
     //costruttore
-    public Magazine(int ISBN, String titolo, int annoDiPubblicazione, int numeroPagine, Periodo periodo) {
+    public Magazine(String titolo, int annoDiPubblicazione, int numeroPagine, Periodo periodo) {
         this.ISBN = rnd.nextInt(1001, 2000);
         this.titolo = titolo;
         this.annoDiPubblicazione = annoDiPubblicazione;
         this.numeroPagine = numeroPagine;
         this.periodo = periodo;
     }
+
 
     // getters
     public String getTitolo() {
@@ -63,5 +65,17 @@ public class Magazine extends Material {
 
     public void setPeriodo(Periodo periodo) {
         this.periodo = periodo;
+    }
+
+
+    @Override
+    public String toString() {
+        return "rivista{" +
+                ", periodo='" + periodo + '\'' +
+                ", ISBN=" + ISBN +
+                ", titolo='" + titolo + '\'' +
+                ", annoDiPubblicazione=" + annoDiPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}' + "\n";
     }
 }

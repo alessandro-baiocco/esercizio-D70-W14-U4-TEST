@@ -48,6 +48,7 @@ public class Book extends Material {
     public void setAnnoDiPubblicazione(int annoDiPubblicazione) {
         this.annoDiPubblicazione = annoDiPubblicazione;
     }
+
     //setters
 
     public int getNumeroPagine() {
@@ -72,5 +73,18 @@ public class Book extends Material {
 
     public void setGenere(String genere) {
         this.genere = genere;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Libro{" +
+                ", autore='" + autore + '\'' +
+                ", genere='" + genere + '\'' +
+                ", ISBN=" + ISBN +
+                ", titolo='" + titolo + '\'' +
+                ", annoDiPubblicazione=" + annoDiPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}' + "\n";
     }
 }
