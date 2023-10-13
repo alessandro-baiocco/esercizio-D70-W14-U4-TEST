@@ -1,0 +1,41 @@
+Libroautore=Creola Hudson, genere=Science fiction, ISBN=670, titolo=Jacob Have I Loved, annoDiPubblicazione=1951, numeroPagine=453
+
+Libroautore=Jacquelin Wintheiser IV, genere=Humor, ISBN=327, titolo=The Golden Apples of the Sun, annoDiPubblicazione=1990, numeroPagine=67
+
+Libroautore=Conrad Bednar DDS, genere=Realistic fiction, ISBN=610, titolo=Now Sleeps the Crimson Petal, annoDiPubblicazione=2008, numeroPagine=490
+
+Libroautore=Pierre Zieme Jr., genere=Classic, ISBN=675, titolo=Lilies of the Field, annoDiPubblicazione=1971, numeroPagine=483
+
+Libroautore=Shayna Upton, genere=Tall tale, ISBN=757, titolo=Dying of the Light, annoDiPubblicazione=1996, numeroPagine=423
+
+Libroautore=Mrs. Ellyn Monahan, genere=Fairy tale, ISBN=182, titolo=Beyond the Mexique Bay, annoDiPubblicazione=1973, numeroPagine=122
+
+Libroautore=Mr. Collin Sauer, genere=Speech, ISBN=988, titolo=His Dark Materials, annoDiPubblicazione=2019, numeroPagine=482
+
+Libroautore=Trina Pagac, genere=Mythology, ISBN=467, titolo=No Highway, annoDiPubblicazione=1960, numeroPagine=166
+
+Libroautore=Mr. Buford Schumm, genere=Metafiction, ISBN=832, titolo=Great Work of Time, annoDiPubblicazione=1998, numeroPagine=437
+
+Libroautore=Hildegard Gutkowski DVM, genere=Reference book, ISBN=690, titolo=Bury My Heart at Wounded Knee, annoDiPubblicazione=2000, numeroPagine=453
+
+rivista periodo='Settimanale ISBN=1426 titolo='Tiger! Tiger! annoDiPubblicazione=1977 numeroPagine=416}
+
+rivista periodo='Settimanale ISBN=1919 titolo='Recalled to Life annoDiPubblicazione=1964 numeroPagine=222}
+
+rivista periodo='Mensile ISBN=1845 titolo='Nectar in a Sieve annoDiPubblicazione=1996 numeroPagine=194}
+
+rivista periodo='Mensile ISBN=1215 titolo='Absalom, Absalom! annoDiPubblicazione=1985 numeroPagine=211}
+
+rivista periodo='Mensile ISBN=1850 titolo='Fair Stood the Wind for France annoDiPubblicazione=1964 numeroPagine=499}
+
+rivista periodo='Settimanale ISBN=1730 titolo='An Instant In The Wind annoDiPubblicazione=1980 numeroPagine=140}
+
+rivista periodo='Settimanale ISBN=1970 titolo='The Other Side of Silence annoDiPubblicazione=1989 numeroPagine=431}
+
+rivista periodo='Settimanale ISBN=1828 titolo='The Other Side of Silence annoDiPubblicazione=1968 numeroPagine=79}
+
+rivista periodo='Settimanale ISBN=1183 titolo='When the Green Woods Laugh annoDiPubblicazione=1967 numeroPagine=116}
+
+rivista periodo='Settimanale ISBN=1966 titolo='To Sail Beyond the Sunset annoDiPubblicazione=2015 numeroPagine=326}
+
+

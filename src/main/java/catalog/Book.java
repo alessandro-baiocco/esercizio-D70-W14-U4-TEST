@@ -1,6 +1,5 @@
 package catalog;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class Book extends Material {
@@ -79,23 +78,14 @@ public class Book extends Material {
 
     @Override
     public String toString() {
-        return "Libro{" +
-                ", autore='" + autore + '\'' +
-                ", genere='" + genere + '\'' +
+        return "Libro" +
+                "autore=" + autore +
+                ", genere=" + genere +
                 ", ISBN=" + ISBN +
-                ", titolo='" + titolo + '\'' +
+                ", titolo=" + titolo +
                 ", annoDiPubblicazione=" + annoDiPubblicazione +
-                ", numeroPagine=" + numeroPagine +
-                '}' + "\n";
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Book book = (Book) o;
-        return ISBN == book.ISBN && annoDiPubblicazione == book.annoDiPubblicazione && numeroPagine == book.numeroPagine && Objects.equals(autore, book.autore) && Objects.equals(genere, book.genere) && Objects.equals(titolo, book.titolo);
+                ", numeroPagine=" + numeroPagine
+                + "\n";
     }
 
 

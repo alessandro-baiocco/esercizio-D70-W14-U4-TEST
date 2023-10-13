@@ -70,12 +70,12 @@ public class Magazine extends Material {
 
     @Override
     public String toString() {
-        return "rivista{" +
-                ", periodo='" + periodo + '\'' +
-                ", ISBN=" + ISBN +
-                ", titolo='" + titolo + '\'' +
-                ", annoDiPubblicazione=" + annoDiPubblicazione +
-                ", numeroPagine=" + numeroPagine +
+        return "rivista" +
+                " periodo='" + periodo +
+                " ISBN=" + ISBN +
+                " titolo='" + titolo +
+                " annoDiPubblicazione=" + annoDiPubblicazione +
+                " numeroPagine=" + numeroPagine +
                 '}' + "\n";
     }
 }
