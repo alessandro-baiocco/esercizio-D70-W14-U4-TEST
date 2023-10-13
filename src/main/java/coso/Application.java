@@ -15,11 +15,6 @@ import java.util.function.Supplier;
 import static other.Tools.*;
 
 public class Application {
-//    static List<Material> catalogo = new ArrayList<>();
-//    static Periodo[] rndPerdiodo = Periodo.values();
-//    static Faker faker = new Faker();
-//    static Random rnd = new Random();
-//    static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -66,6 +61,7 @@ public class Application {
                         break;
                     }
                     case "5": {
+                        System.out.println("uscita");
                         break esterno;
                     }
                     default: {
@@ -78,13 +74,14 @@ public class Application {
             System.err.println("input non valido");
         } catch (Exception ex) {
             System.err.println("errore generico");
-            System.out.println(ex);
+            System.out.println(ex.getMessage());
         } finally {
             input.close();
         }
     }
 
 
+    //---------------------------------------------------------
     public static void aggiungiOrimuovi() {
         try {
             System.out.println("vuoi aggiungere  un libro o una rivista o rimuovere qualcosa ? +book, +mag o -item ");
@@ -141,10 +138,14 @@ public class Application {
             }
         } catch (InputMismatchException | NumberFormatException ex) {
             System.err.println("input non valido");
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.err.println("periodo non valido");
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
     }
+
+    //---------------------------------------------------------------------------------
 
     public static void ricerca() {
         try {
@@ -154,23 +155,28 @@ public class Application {
                 case "isbn": {
                     System.out.println("inserire isbm da ricercare ");
                     int researchInputInt = Integer.parseInt(input.nextLine());
-                    catalogo.stream().filter(Material -> Material.getISBN() == researchInputInt).forEach(System.out::println);
+                    catalogo.stream()
+                            .filter(Material -> Material.getISBN() == researchInputInt)
+                            .forEach(System.out::println);
                     break;
                 }
                 case "anno": {
                     System.out.println("inserire anno da ricercare ");
                     int researchInputInt = Integer.parseInt(input.nextLine());
-                    catalogo.stream().filter(Material -> Material.getAnnoDiPubblicazione() == researchInputInt).forEach(System.out::println);
+                    catalogo.stream()
+                            .filter(Material -> Material.getAnnoDiPubblicazione() == researchInputInt)
+                            .forEach(System.out::println);
                     break;
                 }
                 case "autore": {
                     System.out.println("inserire autore da ricercare ");
                     String researchInputStr = input.nextLine().toLowerCase().trim();
                     System.out.println(researchInputStr);
-                    catalogo.stream().filter(Material -> Material.getClass() == Book.class && Objects.equals(((Book) Material).getAutore(), researchInputStr)).forEach(System.out::println);
+                    catalogo.stream()
+                            .filter(Material -> Material.getClass() == Book.class && Objects.equals(((Book) Material)
+                                    .getAutore(), researchInputStr)).forEach(System.out::println);
                     break;
                 }
-
                 default: {
                     System.out.println("eh? cosa ?");
                 }
@@ -189,16 +195,12 @@ public class Application {
             String saveOreload = input.nextLine();
             switch (saveOreload) {
                 case "salva": {
-                    try {
-                        File file = new File("src/output.txt");
-                        String catalogoItemToStr = "";
-                        for (int i = 0; i < catalogo.size(); i++) {
-                            catalogoItemToStr += catalogo.get(i).save();
-                        }
-                        FileUtils.writeStringToFile(file, catalogoItemToStr, StandardCharsets.UTF_8);
-                    } catch (IOException e) {
-                        System.err.println(e.getMessage());
+                    File file = new File("src/output.txt");
+                    String catalogoItemToStr = "";
+                    for (int i = 0; i < catalogo.size(); i++) {
+                        catalogoItemToStr += catalogo.get(i).save();
                     }
+                    FileUtils.writeStringToFile(file, catalogoItemToStr, StandardCharsets.UTF_8);
                     System.out.println("salvataggio avvenuto con successo");
                     break;
                 }
@@ -215,9 +217,13 @@ public class Application {
                         String[] splittedItem = itemInfo.split("@");
 
                         if (splittedItem.length == 6)
-                            catalogo.add(new Book(splittedItem[0], splittedItem[1], splittedItem[2], Integer.parseInt(splittedItem[3]), Integer.parseInt(splittedItem[4]), Integer.parseInt(splittedItem[5])));
+                            catalogo.add(new Book(splittedItem[0], splittedItem[1], splittedItem[2],
+                                    Integer.parseInt(splittedItem[3]), Integer.parseInt(splittedItem[4]),
+                                    Integer.parseInt(splittedItem[5])));
                         else
-                            catalogo.add(new Magazine(splittedItem[0], Integer.parseInt(splittedItem[1]), Integer.parseInt(splittedItem[2]), Periodo.valueOf(splittedItem[3]), Integer.parseInt(splittedItem[4])));
+                            catalogo.add(new Magazine(splittedItem[0], Integer.parseInt(splittedItem[1]),
+                                    Integer.parseInt(splittedItem[2]), Periodo.valueOf(splittedItem[3]),
+                                    Integer.parseInt(splittedItem[4])));
                     }
                     System.out.println("caricatmento eseguito con successo");
                     System.out.println(catalogo);
@@ -227,6 +233,8 @@ public class Application {
                     System.out.println("eh ? cosa ? ");
                 }
             }
+        } catch (NumberFormatException | InputMismatchException ex) {
+            System.err.println("input non valido");
         } catch (IOException ex) {
             System.err.println("errore in I/O");
         } catch (Exception ex) {
