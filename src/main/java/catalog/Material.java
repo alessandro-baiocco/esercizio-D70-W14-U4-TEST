@@ -1,5 +1,7 @@
 package catalog;
 
+import java.util.Objects;
+
 public abstract class Material {
 
     private int ISBN;
@@ -50,4 +52,13 @@ public abstract class Material {
                 ", numeroPagine=" + numeroPagine +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Material material = (Material) o;
+        return ISBN == material.ISBN && annoDiPubblicazione == material.annoDiPubblicazione && numeroPagine == material.numeroPagine && Objects.equals(titolo, material.titolo);
+    }
+
 }

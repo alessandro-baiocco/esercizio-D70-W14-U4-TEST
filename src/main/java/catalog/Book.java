@@ -1,5 +1,6 @@
 package catalog;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class Book extends Material {
@@ -60,7 +61,7 @@ public class Book extends Material {
     }
 
     public String getAutore() {
-        return autore;
+        return autore.toLowerCase().trim();
     }
 
     public void setAutore(String autore) {
@@ -87,4 +88,15 @@ public class Book extends Material {
                 ", numeroPagine=" + numeroPagine +
                 '}' + "\n";
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return ISBN == book.ISBN && annoDiPubblicazione == book.annoDiPubblicazione && numeroPagine == book.numeroPagine && Objects.equals(autore, book.autore) && Objects.equals(genere, book.genere) && Objects.equals(titolo, book.titolo);
+    }
+
+
 }
